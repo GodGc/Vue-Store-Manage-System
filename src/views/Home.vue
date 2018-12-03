@@ -70,7 +70,9 @@
           </el-submenu>
         </el-menu>
       </el-aside>
-      <el-main class="home-main">我是内容展示区域</el-main>
+      <el-main class="home-main">
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -120,7 +122,8 @@ export default {
   height: 80px;
 }
 .home-wrap .home-main{
-  background-color: #BAC8D7;
+  background-color: #dceaf9;
+  overflow: hidden;
 }
 .home-wrap .home-aside{
   overflow: hidden;
