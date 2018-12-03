@@ -8,10 +8,10 @@
       :model="formLogin">
       <h2>登录页面</h2>
       <el-form-item label="账号" prop="username">
-        <el-input v-model="formLogin.username"></el-input>
+        <el-input v-model="formLogin.username" autofocus></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input type="password" v-model="formLogin.password" ></el-input>
+        <el-input @keyup.enter.native="handleClick" type="password" v-model="formLogin.password"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button @click.prevent="handleClick" class="login-btn" type="primary">提交</el-button>
@@ -45,6 +45,9 @@ export default {
   methods: {
     handleClick () {
       const that = this
+      if (!this.formLogin.username) {
+        return this.$message.error('用户名和密码不允许为空')
+      }
       axios
         .post('http://localhost:8888/api/private/v1/login', this.formLogin)
         .then(response => {
