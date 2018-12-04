@@ -8,17 +8,25 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {name: '/', path: '/', redirect: {name: 'Home'}},
+    {name: '/', path: '/', redirect: '/home'},
     {name: 'Login', path: '/login', component: Login},
+    // 嵌套路由
     {
-      name: 'Home',
       path: '/home',
       component: Home,
-      children: [{
-        name: 'Users',
-        path: '/users',
-        component: Users
-      }]
+      children: [
+        // 设置默认子路由,要点: 去掉父路由的name属性
+        {
+          path: '',
+          component: {
+            template: '<h2>欢迎光临!</h2>'
+          }
+        },
+        {
+          name: 'Users',
+          path: '/users',
+          component: Users
+        }]
     }
   ]
 })

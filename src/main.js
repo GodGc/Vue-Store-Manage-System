@@ -8,13 +8,18 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
-// 引入基础样式 main.js是根实例 会去渲染index.html中的el管理的标签,所以是全局加载
+// main.js会去渲染单文件首页:index.html中的el管理的标签,所以是根实例=>所以是全局加载
+// 引入基础样式
 import '@/assets/css/base.css'
 
 // 引入moment模块
 import moment from 'moment'
 
-// 使用ElementUI插件
+// 引入myaxios插件 和 注册这个插件
+import myaxios from '@/plugins/MyAxios'
+Vue.use(myaxios)
+
+// 注册ElementUI插件
 Vue.use(ElementUI)
 
 // 关闭vue提醒

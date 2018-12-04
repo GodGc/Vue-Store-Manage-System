@@ -73,7 +73,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   created () {
     this.handleLoadData()
@@ -88,9 +87,9 @@ export default {
   methods: {
     async handleLoadData () {
       // 配置axios请求是的全局请求头
-      axios.defaults.headers.common['Authorization'] = sessionStorage.getItem('token')
-      var response = await axios
-        .get('http://localhost:8888/api/private/v1/users', {
+      this.$axios.defaults.headers.common['Authorization'] = sessionStorage.getItem('token')
+      var response = await this.$axios
+        .get('/users', {
           params: {
             pagenum: 1, pagesize: 10
           }})

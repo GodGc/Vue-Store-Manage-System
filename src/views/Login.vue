@@ -21,8 +21,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   name: 'Login',
   data () {
@@ -48,8 +46,8 @@ export default {
       if (!this.formLogin.username) {
         return this.$message.error('用户名和密码不允许为空')
       }
-      axios
-        .post('http://localhost:8888/api/private/v1/login', this.formLogin)
+      this.$axios
+        .post('/login', this.formLogin)
         .then(response => {
           if (response.data.meta.status === 200) {
             this.$message({
