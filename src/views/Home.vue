@@ -20,7 +20,6 @@
           <el-radio-button :label="true">收起</el-radio-button>
         </el-radio-group>
         <el-menu
-          default-active="/users"
           unique-opened
           router
           class="el-menu"
@@ -115,6 +114,7 @@ export default {
 }
 .home-wrap .home-main{
   background-color: #dceaf9;
+  height: auto;
   overflow: hidden;
 }
 .home-wrap .home-aside{

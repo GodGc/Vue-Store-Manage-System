@@ -15,6 +15,9 @@ import '@/assets/css/base.css'
 // 引入moment模块
 import moment from 'moment'
 
+// 导入自定义面包屑组件
+import Mybreadcrumb from '@/components/Mybreadcrumb'
+
 // 引入myaxios插件 和 注册这个插件
 import myaxios from '@/plugins/MyAxios'
 Vue.use(myaxios)
@@ -29,6 +32,9 @@ Vue.config.productionTip = false
 Vue.filter('fmtDate', (value, fmtStr) => {
   return moment(value).format(fmtStr)
 })
+
+// 注册全局面包屑组件
+Vue.component(Mybreadcrumb.name, Mybreadcrumb)
 
 /* eslint-disable no-new */
 new Vue({

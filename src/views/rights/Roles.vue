@@ -1,5 +1,7 @@
 <template>
-  <h2>角色列表</h2>
+  <el-card>
+    <my-breadcrumb level1="权限管理" level2="角色管理"></my-breadcrumb>
+  </el-card>
 </template>
 
 <script>

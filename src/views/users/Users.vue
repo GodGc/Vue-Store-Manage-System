@@ -1,10 +1,6 @@
 <template>
   <el-card class="users-card">
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{ path: '/users' }">用户管理</el-breadcrumb-item>
-      <el-breadcrumb-item>用户列表</el-breadcrumb-item>
-    </el-breadcrumb>
+    <my-breadcrumb level1="用户管理" level2="用户列表"></my-breadcrumb>
     <el-row>
       <el-col :span="24">
         <el-input
@@ -197,8 +193,6 @@ export default {
   },
   methods: {
     async handleLoadData (pagenum, pageSize, query) {
-      // 配置axios请求 => 全局请求头
-      this.$axios.defaults.headers.common['Authorization'] = sessionStorage.getItem('token')
       var response = await this.$axios
         .get('/users', {
           params: {
@@ -352,12 +346,11 @@ export default {
 
 <style scoped>
 .users-card{
-  height: auto;
+  height: 100%;
+  overflow: auto;
 }
 .el-breadcrumb{
-  height: 40px;
-  line-height: 40px;
-  font-size: 16px;
+  margin-bottom: 10px;
 }
 .searchIpt {
   display: inline-block;

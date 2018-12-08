@@ -6,6 +6,7 @@ import Home from '@/views/Home'
 import Users from '@/views/users/Users'
 import Roles from '@/views/rights/Roles'
 import Rights from '@/views/rights/Rights'
+
 // 注册路由组件
 Vue.use(Router)
 
