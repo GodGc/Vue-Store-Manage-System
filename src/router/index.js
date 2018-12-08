@@ -4,6 +4,9 @@ import Router from 'vue-router'
 import Login from '@/views/Login'
 import Home from '@/views/Home'
 import Users from '@/views/users/Users'
+import Roles from '@/views/rights/Roles'
+
+// 注册路由组件
 Vue.use(Router)
 
 export default new Router({
@@ -26,6 +29,11 @@ export default new Router({
           name: 'Users',
           path: '/users',
           component: Users
+        },
+        {
+          name: 'Roles',
+          path: '/roles',
+          component: Roles
         }]
     }
   ]

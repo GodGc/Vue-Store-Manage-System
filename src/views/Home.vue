@@ -1,6 +1,6 @@
 <template>
   <el-container class="home-wrap">
-    <el-header class="home-header" height="80px">
+    <el-header class="home-header" height="60px">
       <el-row>
         <el-col :span="4">
           <img src="@/assets/logo.png" alt="logo-img">
@@ -24,8 +24,6 @@
           unique-opened
           router
           class="el-menu"
-          @open="handleOpen"
-          @close="handleClose"
           background-color="#545c64"
           text-color="#fff"
           :collapse="isCollapse"
@@ -94,12 +92,6 @@ export default {
     }
   },
   methods: {
-    handleOpen (key, keyPath) {
-      console.log(key, keyPath)
-    },
-    handleClose (key, keyPath) {
-      console.log(key, keyPath)
-    },
     handleLogout () {
       sessionStorage.removeItem('token')
       this.$router.push('/login')
@@ -115,11 +107,11 @@ export default {
 .home-wrap .home-header{
   background-color: #28477c;
   text-align: center;
-  line-height: 80px;
+  line-height: 60px;
   color: #fff;
 }
 .home-wrap .home-header img{
-  height: 80px;
+  height: 60px;
 }
 .home-wrap .home-main{
   background-color: #dceaf9;
@@ -133,7 +125,7 @@ export default {
   border: 0;
 }
 .el-menu:not(.el-menu--collapse) {
-  width: 300px;
+  width: 200px;
   height: 100%;
 }
 </style>
