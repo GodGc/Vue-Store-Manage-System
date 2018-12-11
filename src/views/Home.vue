@@ -27,43 +27,21 @@
           text-color="#fff"
           :collapse="isCollapse"
           active-text-color="#ffd04b">
-          <el-submenu index="1">
+          <!--根据权限不同渲染不同的左侧菜单栏-->
+          <el-submenu
+            v-for="level1 in menus"
+            :key="level1.id"
+            :index="''+ level1.id">
             <template slot="title">
               <i class="el-icon-location"></i>
-              <span>用户管理</span>
+              <span>{{ level1.authName }}</span>
             </template>
-            <el-menu-item index="/users"><i class="el-icon-menu"></i>用户列表</el-menu-item>
-          </el-submenu>
-          <el-submenu index="2">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>权限管理</span>
-            </template>
-            <el-menu-item index="/roles"><i class="el-icon-menu"></i>角色列表</el-menu-item>
-            <el-menu-item index="/rights"><i class="el-icon-menu"></i>权限列表</el-menu-item>
-          </el-submenu>
-          <el-submenu index="3">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>商品管理</span>
-            </template>
-            <el-menu-item index="/goods"><i class="el-icon-menu"></i>商品列表</el-menu-item>
-            <el-menu-item index="/list"><i class="el-icon-menu"></i>分类数据</el-menu-item>
-            <el-menu-item index="/goodslist"><i class="el-icon-menu"></i>商品分类</el-menu-item>
-          </el-submenu>
-          <el-submenu index="4">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>订单管理</span>
-            </template>
-            <el-menu-item index="/orders"><i class="el-icon-menu"></i>订单列表</el-menu-item>
-          </el-submenu>
-          <el-submenu index="5">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>数据统计</span>
-            </template>
-            <el-menu-item index="/dataforms"><i class="el-icon-menu"></i>数据报表</el-menu-item>
+            <el-menu-item
+              v-for="level2 in level1.children"
+              :key="level2.id"
+              :index="'/' +level2.path">
+              <i class="el-icon-menu"></i>{{ level2.authName }}
+            </el-menu-item>
           </el-submenu>
         </el-menu>
       </el-aside>
@@ -77,23 +55,31 @@
 <script>
 export default {
   // 进行登录权限限制
-  beforeCreate () {
-    const token = sessionStorage.getItem('token')
-    if (!token) {
-      this.$message.warning('请先登录')
-      this.$router.push('/login')
-    }
+  // beforeCreate () {
+  //   const token = sessionStorage.getItem('token')
+  //   if (!token) {
+  //     this.$message.warning('请先登录')
+  //     this.$router.push('/login')
+  //   }
+  // },
+  created () {
+    this.handleLoadMenus()
   },
   name: 'Home',
   data () {
     return {
-      isCollapse: false
+      isCollapse: false,
+      menus: []
     }
   },
   methods: {
     handleLogout () {
       sessionStorage.removeItem('token')
       this.$router.push('/login')
+    },
+    async handleLoadMenus () {
+      const response = await this.$axios.get('menus')
+      this.menus = response.data.data
     }
   }
 }

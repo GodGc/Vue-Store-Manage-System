@@ -191,15 +191,9 @@ export default {
 </script>
 
 <style scoped>
-  .el-card {
-    height: 100%;
-    overflow: auto;
-  }
-
   .level1 {
     margin-bottom: 10px;
   }
-
   .level3 {
     margin-right: 8px;
     margin-bottom: 8px;

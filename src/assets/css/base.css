@@ -9,3 +9,7 @@ html,body{
 img{
   vertical-align: middle;
 }
+.el-card {
+  height: 100%;
+  overflow: auto;
+}
